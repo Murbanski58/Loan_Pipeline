@@ -35,6 +35,36 @@ class Loan:
 
     def getPeriodicIntRate(self):
         return self.periodicIntRate
+    
+@app.route('/not-found')
+ def not_found():
+     return render_template_string("""
+        {% extends 'base.html' %} 
+        {% block body %}
+        <main>
+            <h1> Page Not Found</h1>
+            <hr/>
+                p>The resource you are looking for can not be found.</p>
+            </main>
+            {% endblock %}
+            """)
+
+    return app
+
+@app.route('/error')
+ def error():
+    return render_template_string("""
+        {% extends 'base.html' %} 
+        {% block body %}
+        <main>
+            <h1> Something has gone wrong.</h1>
+            <hr/>
+            <p>Please return to the home page.</p>
+        </main>
+        {% endblock %}
+        """)
+
+    return app
 
 
 @app.route("/", methods=["GET"])

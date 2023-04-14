@@ -106,3 +106,16 @@ def test_full_loan_calculation(client):
     print(" -- full loan calculation and amortization table integration test")
     for field, value in data.items():
         assert value.encode() in response.data
+
+
+def test_not_found(app, client):
+    response = client.get('/not-found')
+    assert response.status_code == 200
+    assert b'Page Not Found' in response.data
+    assert b'The resource you are looking for can not be found.' in response.data
+
+def test_error(app, client):
+    response = client.get('/error')
+    assert response.status_code == 200
+    assert b'Something has gone wrong.' in response.data
+    assert b'Please return to the home page.' in response.data
