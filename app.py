@@ -35,7 +35,11 @@ class Loan:
 
     def getPeriodicIntRate(self):
         return self.periodicIntRate
-
+    
+# Handling error 404 and displaying relevant web page
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template("404.html"), 404
 
 @app.route("/", methods=["GET"])
 def index():
